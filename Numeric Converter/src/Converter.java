@@ -25,9 +25,11 @@ public class Converter {
 			
 			for(int j = 0; j < words[i].length(); j++) {
 				int numVal = (int) (words[i].charAt(j));
-				
+				if(numVal >47 && numVal < 58) {
+					numVal = Integer.parseInt(words[i].substring(j, j+1));
+				}
 				for(int k = 128; k > 0; k /= 2) {
-					if(numVal > k) {
+					if(numVal >= k) {
 						convertedWord += "1";
 						numVal -= k;
 					}else {
@@ -36,7 +38,7 @@ public class Converter {
 				}
 				
 			}
-			convertedString += convertedWord;
+			convertedString += convertedWord + "\n";
 		}
 		return convertedString;
 	}
