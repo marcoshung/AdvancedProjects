@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Converter {
-	
 	public static void main(String[] args) {
 		boolean running = true;
 		Scanner console = new Scanner(System.in);
