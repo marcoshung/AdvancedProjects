@@ -5,8 +5,10 @@ public class ListFilmArchive extends ArrayList<Movie> implements FilmArchive{
 	
 	//adds a movie to the list if it is not there and returns true; false otherwise
 	public boolean add(Movie m) {
-		if(this.contains(m)) {
-			return false;
+		for(int i = 0; i <this.size(); i ++) {
+			if(this.get(i).compareTo(m) == 0) {
+				return false;
+			}
 		}
 		super.add(m);
 		return true;

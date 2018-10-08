@@ -1,8 +1,8 @@
 package movies;
 
 public class Movie implements Comparable<Movie>{
-	String title;
-	int year;
+	private String title;
+	private int year;
 	
 	public Movie(String title, int year) {
 		this.title = title;
@@ -11,10 +11,10 @@ public class Movie implements Comparable<Movie>{
 
 	@Override
 	public int compareTo(Movie o) {
-		if(this.equals(o)){
-			return 1;
+		if(this.title.compareTo(o.getTitle()) == 0){
+			return Integer.compare(this.year,o.getYear());
 		}
-		return 0;
+		return this.title.compareTo(o.getTitle());
 	}
 	
 	public int getYear() {
@@ -46,7 +46,7 @@ public class Movie implements Comparable<Movie>{
 		
 	}
 	
-	public int hashcode() {
+	public int hashCode() {
 		return title.hashCode() + year;
 	}
 	

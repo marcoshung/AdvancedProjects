@@ -5,10 +5,6 @@ public class DamagedRover extends MarsRover {
 	private final static int METERS_FROM_START_TO_CLIFF = 1000;
 	private final static int N_SIMULATIONS = 5000;
 
-	// Distance from start. Range is
-	// -1000 to +1000. If Rover travels // beyond this range, it falls off // a
-	// cliff.
-	private double position;
 	// Total meters traveled
 	// back and forth.
 	private double metersTraveled = 0;
@@ -21,19 +17,15 @@ public class DamagedRover extends MarsRover {
 	// position = -1000.
 	//
 	public void simulateStormDamageTravel() {
-		position = 0;
+		setPosition(0,0);
 		while (metersTraveled < MAX_TRAVEL_METERS_BEFORE_EMPTY_BATTERY || fell) {
 			double distanceNextTurn = (int)(1 + 4*Math.random()); 
 			boolean forwardNotBack = (Math.random() > 0.5);
 			// Adjust position and metersTraveled.
-			if (forwardNotBack) {
-				position += distanceNextTurn;
-			}else {
-				position -= distanceNextTurn; 			
-			}
+			move(distanceNextTurn,forwardNotBack);
 			metersTraveled += distanceNextTurn;
 			// Check for falling off cliff. If Rover fell, set fell to true and // terminate (break out of) the loop.
-			if (position >= METERS_FROM_START_TO_CLIFF || position <= METERS_FROM_START_TO_CLIFF * (-1)){
+			if (this.getXPosition() >= METERS_FROM_START_TO_CLIFF || this.getXPosition() <= METERS_FROM_START_TO_CLIFF * (-1)){
 				fell = true;
 				System.out.println("fell " + metersTraveled);
 			}
@@ -60,5 +52,13 @@ public class DamagedRover extends MarsRover {
 			}
 		}
 		System.out.println("Number of Times Fell : " + counter);
+	}
+	
+	private void move(double distance, boolean forward) {
+		if(forward) {
+			changePositionBy(distance,0);
+		}else {
+			changePositionBy(distance * -1 , 0);
+		}
 	}
 }
