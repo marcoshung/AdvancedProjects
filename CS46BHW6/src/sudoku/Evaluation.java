@@ -1,6 +1,5 @@
 package sudoku;
 
-enum Evaluation 
-{
+enum Evaluation {
 	  ACCEPT, ABANDON, CONTINUE;
 }
