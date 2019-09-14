@@ -41,6 +41,8 @@ public class Shuffler {
 	public static void randomize(String[] array) {
 		Random random = new Random();
 		random.setSeed(20);
+		
+		//uses Fisher–Yates shuffle algorithm
 		for(int i = array.length - 1; i >= 0; i--) {
 			int randomized = random.nextInt(array.length);
 			String temp = array[i];
