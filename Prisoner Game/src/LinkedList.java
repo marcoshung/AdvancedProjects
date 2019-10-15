@@ -6,6 +6,7 @@ public class LinkedList {
 	private Node tail;
 	private int length = 0;
 	private int targetData;
+	double startTime = System.currentTimeMillis();
 	
 	public LinkedList() {}
 	
@@ -45,6 +46,8 @@ public class LinkedList {
 		for(int i = 1; i <= num; i++) {
 			insert(i);
 		}
+		System.out.println("Time to create new LinkedList: " + (System.currentTimeMillis() - startTime) + " milliseconds");
+
 	}
 	
 	//returns the winner of the game
@@ -70,7 +73,8 @@ public class LinkedList {
 			//removes the target node from the linkedlist by pointing the surronding nodes to each other
 			targetNode.getPrev().setNext(targetNode.getNext());
 			targetNode.getNext().setPrev(targetNode.getPrev());
-			
+			System.out.println("Time to delete a node: " + (System.currentTimeMillis() - startTime) + " milliseconds");
+
 			
 			targetNode = targetNode.getNext(); //Since we start counting a node ahead of given position
 			length--;
@@ -85,6 +89,8 @@ public class LinkedList {
 			
 		}
 		this.targetData = targetNode.getData();
+		System.out.println("Time to find winner: " + (System.currentTimeMillis() - startTime) + " milliseconds");
+
 		return targetNode;
 	}
 	

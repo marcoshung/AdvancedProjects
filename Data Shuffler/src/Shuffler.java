@@ -9,31 +9,31 @@ import java.util.Random;
 public class Shuffler {
 	
 	public static void main(String[] args) throws IOException {
-		//BufferedReader Out = new BufferedReader (new FileReader ("LastNameFirstNameShuffled.txt"));
-		BufferedReader In = new BufferedReader (new FileReader ("/Users/marcoshung/Downloads/ErdosCA.txt")); 
-		System.out.println("Start Time: " + System.currentTimeMillis());
+		double startTime = System.currentTimeMillis();
+		BufferedReader In = new BufferedReader (new FileReader ("ErdosCA.txt")); 
 		String firstLine = In.readLine();
 		String[] numbers = firstLine.split(" ");
 		int distinct1 = Integer.parseInt(numbers[1]);
 		int distinct2 = Integer.parseInt(numbers[2]);
-		File outputFile = new File("/Users/marcoshung/Downloads/LastNameFirstNameShuffled.txt");
+		File outputFile = new File("HungMarcosShuffled.txt");
 		BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 		int rows =  Integer.parseInt(numbers[3]);
 		String[] data = new String[rows];
 		
 		for(int i = 0;i < data.length; i++) {
 			data[i] = In.readLine();
-			//System.out.println(data[i]);
 		}
-		
+		System.out.println("Time to read file: " + (System.currentTimeMillis() - startTime) + " milliseconds");
+
 		randomize(data);
-		System.out.println("Start Time: " + System.currentTimeMillis());
+		System.out.println("Time to shuffle elements: " + (System.currentTimeMillis() - startTime) + " milliseconds");
+
 		for(int i = 0;i < data.length; i++) {
 			writer.write(data[i]);
 			writer.newLine();
 		}
-		
-		//Out.close();
+		System.out.println("Time to create output file: " + (System.currentTimeMillis() - startTime) + " milliseconds");
+
 		In.close();
 		writer.close();
 	}
@@ -43,8 +43,8 @@ public class Shuffler {
 		random.setSeed(20);
 		
 		//uses Fisher–Yates shuffle algorithm
-		for(int i = array.length - 1; i >= 0; i--) {
-			int randomized = random.nextInt(array.length);
+		for(int i = array.length - 1; i > 0; i--) {
+			int randomized = random.nextInt(i);
 			String temp = array[i];
 			array[i] = array[randomized];
 			array[randomized] = temp;
