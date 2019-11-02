@@ -35,7 +35,7 @@ public class Lister {
 	
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		Lister l = new Lister(new File("/Users/marcoshung/Downloads/Class/CS46B"), true);
+		Lister l = new Lister(new File("/Users/marcoshung/Downloads"), true);
 		l.list();
 	}
 }
